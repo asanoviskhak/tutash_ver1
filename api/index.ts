@@ -1,12 +1,12 @@
 import { Bot, webhookCallback } from "grammy";
 
-const BOT_TOKEN = process.env["BOT_TOKEN"] || "";
+const BOT_TOKEN: string = process.env["BOT_TOKEN"] || "";
 
 const bot = new Bot(BOT_TOKEN);
 
-// attach all middleware
 bot.on("message", async (ctx) => {
-  await ctx.reply("Hi there!");
+  console.log(ctx);
+  await ctx.reply("Hello World!");
 });
 
 // The free version of vercel has restrictions on quotas, which we need to enable in the configuration file vercel.json
