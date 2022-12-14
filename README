@@ -1,0 +1,12 @@
+
+*** Command to build
+* npx tsc
+
+*** Command to start dev
+* npm run dev
+
+*** command to deploy to vercel
+* npm run deploy
+
+*** Setting the webhook for vercel or others
+* https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>

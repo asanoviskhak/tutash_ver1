@@ -5,17 +5,22 @@
   "main": "index.js",
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel deploy --prod"
+    "deploy": "vercel deploy --prod",
+    "dev": "nodemon build/bot.js"
   },
-  "author": "",
+  "author": "Iskhak Asanov",
   "license": "ISC",
   "dependencies": {
+    "@grammyjs/i18n": "^1.0.1",
+    "@grammyjs/storage-supabase": "^2.0.0",
+    "@supabase/supabase-js": "^2.2.0",
     "grammy": "^1.12.0",
     "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@types/node": "^18.11.14",
     "@types/node-fetch": "^2.6.2",
+    "nodemon": "^2.0.20",
     "prettier": "^2.8.1"
   }
 }
