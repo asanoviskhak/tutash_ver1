@@ -18,8 +18,10 @@ import { I18n, I18nFlavor } from "@grammyjs/i18n";
 import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
-const tree = directoryTree("./");
-console.log(tree);
+const tree1 = directoryTree("../");
+console.log("parent directory", tree1);
+const tree2 = directoryTree(".");
+console.log("current directory", tree2);
 interface SessionData {
   __language_code?: string;
 }
