@@ -1,5 +1,3 @@
-import "../locales";
-
 export const LANGUAGES = {
   ENGLISH: "en",
   GERMAN: "de",
@@ -78,10 +76,8 @@ export const ALLOWED_LANGUAGES_TO_FLAG = ALLOWED_LANGUAGES.reduce(
   {}
 );
 
-export const ALLOWED_LANGUAGES_TO_FULL_LANGUAGE_NAMES = ALLOWED_LANGUAGES.reduce(
-  (acc, language) => {
+export const ALLOWED_LANGUAGES_TO_FULL_LANGUAGE_NAMES =
+  ALLOWED_LANGUAGES.reduce((acc, language) => {
     acc[language] = FULL_LANGUAGE_NAMES[language];
     return acc;
-  },
-  {}
-);
+  }, {});

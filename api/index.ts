@@ -29,7 +29,7 @@ type MyContext = Context & SessionFlavor<SessionData> & I18nFlavor;
 const i18n = new I18n<MyContext>({
   defaultLocale: "en",
   useSession: true, // whether to store user language in session
-  directory: "./api/locales", // Load all translation files from locales/.
+  directory: "locales", // Load all translation files from locales/.
 });
 
 const URL =
