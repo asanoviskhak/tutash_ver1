@@ -8,9 +8,9 @@ const languages_1 = require("../constants/languages");
 const i18n_1 = require("@grammyjs/i18n");
 const BOT_TOKEN = (_a = process.env["BOT_TOKEN"]) !== null && _a !== void 0 ? _a : "";
 const i18n = new i18n_1.I18n({
-  defaultLocale: "en",
-  useSession: true,
-  directory: "./locales", // Load all translation files from locales/.
+    defaultLocale: "en",
+    useSession: true,
+    directory: "locales", // Load all translation files from locales/.
 });
 const URL = (_b = process.env["SUPABASE_URL"]) !== null && _b !== void 0 ? _b : "https://zrzbwyqoeptuszgqmnin.supabase.co";
 const KEY = (_c = process.env["SUPABASE_API_KEY"]) !== null && _c !== void 0 ? _c : "anon-key";
