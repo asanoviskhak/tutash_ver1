@@ -19,10 +19,10 @@ import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 
-const tree2 = directoryTree("/vercel/path0");
+const tree2 = directoryTree("/");
 console.log("current directory", tree2);
 
-const tree3 = directoryTree("/var/task");
+const tree3 = directoryTree("/var");
 console.log("current directory", tree3);
 interface SessionData {
   __language_code?: string;
