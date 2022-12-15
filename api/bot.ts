@@ -6,7 +6,7 @@ import {
   LANGUAGES_TO_FLAG,
   LANGUAGES,
   FULL_LANGUAGE_NAMES,
-} from "./constants/languages";
+} from "../constants/languages";
 import { I18n, I18nFlavor } from "@grammyjs/i18n";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";

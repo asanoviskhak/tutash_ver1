@@ -1,3 +1,5 @@
+import "../locales";
+
 export const LANGUAGES = {
   ENGLISH: "en",
   GERMAN: "de",

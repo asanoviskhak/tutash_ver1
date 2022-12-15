@@ -13,13 +13,13 @@ import {
   LANGUAGES_TO_FLAG,
   LANGUAGES,
   FULL_LANGUAGE_NAMES,
-} from "./constants/languages";
+} from "../constants/languages";
 import { I18n, I18nFlavor } from "@grammyjs/i18n";
 import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 
-const tree2 = directoryTree("./api");
+const tree2 = directoryTree("/vercel/output");
 console.log("current directory", tree2);
 interface SessionData {
   __language_code?: string;
