@@ -15,7 +15,9 @@ import {
   FULL_LANGUAGE_NAMES,
 } from "../constants/languages";
 import { I18n, I18nFlavor } from "@grammyjs/i18n";
-
+import directoryTree from "directory-tree";
+const tree1 = directoryTree(".vercel/output");
+console.log(tree1);
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 interface SessionData {
   __language_code?: string;

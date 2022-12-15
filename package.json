@@ -7,7 +7,7 @@
     "start": "vercel dev",
     "deploy": "vercel deploy --prod",
     "dev": "nodemon build/bot.js",
-    "vercel-build": "tsc && cp -r ./locales ./api/locales"
+    "vercel-build": "tsc && cp -r ./locales .vercel/output/static/"
   },
   "author": "Iskhak Asanov",
   "license": "ISC",
