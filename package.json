@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel deploy --prod && cp -r ./locales ./api/locales",
+    "deploy": "vercel deploy --prod",
     "dev": "nodemon build/bot.js",
     "vercel-build": "tsc && cp -r ./locales ./api/locales"
   },
