@@ -57,3 +57,4 @@ dist/**/*
 yarn.lock
 
 /build
+build
