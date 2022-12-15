@@ -11,6 +11,6 @@
     "strict": false,
     "skipLibCheck": true
   },
-  "include": ["locales/.*", "api"],
+  "include": ["locales/*.ftl", "api"],
   "exclude": ["**/node_modules"]
 }
