@@ -19,8 +19,11 @@ import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 
-const tree2 = directoryTree("/vercel/output");
+const tree2 = directoryTree("/vercel/path0");
 console.log("current directory", tree2);
+
+const tree3 = directoryTree("/var/task");
+console.log("current directory", tree3);
 interface SessionData {
   __language_code?: string;
 }
@@ -29,7 +32,7 @@ type MyContext = Context & SessionFlavor<SessionData> & I18nFlavor;
 const i18n = new I18n<MyContext>({
   defaultLocale: "en",
   useSession: true, // whether to store user language in session
-  directory: "locales", // Load all translation files from locales/.
+  directory: "/vercel/path0/locales", // Load all translation files from locales/.
 });
 
 const URL =
