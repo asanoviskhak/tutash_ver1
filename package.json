@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel deploy --prod",
+    "deploy": "vercel deploy --prod && cp -r ./locales ./api/locales",
     "dev": "nodemon build/bot.js"
   },
   "author": "Iskhak Asanov",
