@@ -10,5 +10,7 @@
     "esModuleInterop": true,
     "strict": false,
     "skipLibCheck": true
-  }
+  },
+  "include": ["locales/.*", "api"],
+  "exclude": ["**/node_modules"]
 }
