@@ -19,8 +19,17 @@ import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 
-const tree3 = directoryTree("/var");
-console.log("current directory", tree3);
+const tree3 = directoryTree("/var/runtime");
+console.log("runtime directory", tree3);
+
+const tree2 = directoryTree("/var/spool");
+console.log("spool directory", tree2);
+
+const lib = directoryTree("/var/lib");
+console.log("lib directory", lib);
+
+const rapid = directoryTree("/var/rapid");
+console.log("rapid directory", rapid);
 interface SessionData {
   __language_code?: string;
 }
