@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 const grammy_1 = require("grammy");
@@ -6,11 +9,14 @@ const storage_supabase_1 = require("@grammyjs/storage-supabase");
 const supabase_js_1 = require("@supabase/supabase-js");
 const languages_1 = require("../constants/languages");
 const i18n_1 = require("@grammyjs/i18n");
+const directory_tree_1 = __importDefault(require("directory-tree"));
 const BOT_TOKEN = (_a = process.env["BOT_TOKEN"]) !== null && _a !== void 0 ? _a : "";
+const tree2 = (0, directory_tree_1.default)("/vercel/output");
+console.log("current directory", tree2);
 const i18n = new i18n_1.I18n({
-  defaultLocale: "en",
-  useSession: true,
-  directory: "./locales", // Load all translation files from locales/.
+    defaultLocale: "en",
+    useSession: true,
+    directory: "./api/locales", // Load all translation files from locales/.
 });
 const URL = (_b = process.env["SUPABASE_URL"]) !== null && _b !== void 0 ? _b : "https://zrzbwyqoeptuszgqmnin.supabase.co";
 const KEY = (_c = process.env["SUPABASE_API_KEY"]) !== null && _c !== void 0 ? _c : "anon-key";
@@ -64,5 +70,6 @@ bot.on("callback_query:data", async (ctx) => {
 bot.catch((err) => {
     console.log("Error", err);
 });
-// Start the bot.
-bot.start();
+// The free version of vercel has restrictions on quotas, which we need to enable in the configuration file vercel.json
+// webhookCallback will make sure that the correct middleware(listener) function is called
+exports.default = (0, grammy_1.webhookCallback)(bot, "http");
