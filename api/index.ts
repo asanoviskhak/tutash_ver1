@@ -18,7 +18,8 @@ import { I18n, I18nFlavor } from "@grammyjs/i18n";
 import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
-
+const tree = directoryTree("./");
+console.log(tree);
 interface SessionData {
   __language_code?: string;
 }
@@ -63,8 +64,7 @@ const ENUM_LANGUAGES = Object.values(LANGUAGES)
       design: "row",
     };
   });
-const tree = directoryTree("./");
-console.log(tree);
+
 ENUM_LANGUAGES.forEach((button) => {
   inlineKeyboard[button.type](button.text, button.callback_data)[
     button.design
