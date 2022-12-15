@@ -18,9 +18,8 @@ import { I18n, I18nFlavor } from "@grammyjs/i18n";
 import directoryTree from "directory-tree";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
-const tree1 = directoryTree("../");
-console.log("parent directory", tree1);
-const tree2 = directoryTree(".");
+
+const tree2 = directoryTree("./api");
 console.log("current directory", tree2);
 interface SessionData {
   __language_code?: string;
@@ -30,7 +29,7 @@ type MyContext = Context & SessionFlavor<SessionData> & I18nFlavor;
 const i18n = new I18n<MyContext>({
   defaultLocale: "en",
   useSession: true, // whether to store user language in session
-  directory: "locales", // Load all translation files from locales/.
+  directory: "./api/locales", // Load all translation files from locales/.
 });
 
 const URL =
