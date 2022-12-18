@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@grammyjs/i18n": "^1.0.1",
+    "@grammyjs/ratelimiter": "^1.1.6",
     "@grammyjs/storage-supabase": "^2.0.0",
     "@supabase/supabase-js": "^2.2.0",
     "directory-tree": "^3.4.0",

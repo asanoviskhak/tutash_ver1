@@ -1,48 +1,37 @@
-import { Bot, InlineKeyboard, Context, session, SessionFlavor } from "grammy";
-import { supabaseAdapter } from "@grammyjs/storage-supabase";
-import { createClient } from "@supabase/supabase-js";
+import { Bot, InlineKeyboard, session } from "grammy";
+import { I18n } from "@grammyjs/i18n";
+import { MyContext } from "./types";
 import {
   ALLOWED_LANGUAGES,
   LANGUAGES_TO_FLAG,
   LANGUAGES,
   FULL_LANGUAGE_NAMES,
-} from "../constants/languages";
-import { I18n, I18nFlavor } from "@grammyjs/i18n";
+} from "./constants/languages";
+import { loadLocalizations } from "./utils/localization";
+import { supabaseStorage } from "./utils/storage";
+import { rateLimiter } from "./utils/rate-limiter";
+import { COMMANDS } from "./constants/commands";
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
-
-interface SessionData {
-  __language_code?: string;
-}
-type MyContext = Context & SessionFlavor<SessionData> & I18nFlavor;
 
 const i18n = new I18n<MyContext>({
   defaultLocale: "en",
   useSession: true, // whether to store user language in session
-  directory: "locales", // Load all translation files from locales/.
 });
 
-const URL =
-  process.env["SUPABASE_URL"] ?? "https://zrzbwyqoeptuszgqmnin.supabase.co";
-const KEY = process.env["SUPABASE_API_KEY"] ?? "anon-key";
-
-// supabase instance
-const supabase = createClient(URL, KEY);
-
-//create storage
-const storage = supabaseAdapter({
-  supabase,
-  table: "Session", // the defined table name you want to use to store your session
-});
+loadLocalizations(i18n);
 
 const bot = new Bot<MyContext>(BOT_TOKEN);
+
 bot.use(
   session({
     initial: () => ({}),
-    storage,
+    storage: supabaseStorage,
   })
 );
+
 bot.use(i18n);
+rateLimiter(bot);
 
 const inlineKeyboard = new InlineKeyboard();
 const ENUM_LANGUAGES = Object.values(LANGUAGES)
@@ -51,7 +40,7 @@ const ENUM_LANGUAGES = Object.values(LANGUAGES)
     return {
       type: "text",
       text: `${LANGUAGES_TO_FLAG[language]} ${FULL_LANGUAGE_NAMES[language]}`,
-      callback_data: language,
+      callback_data: COMMANDS.SET_LANGUAGE + ":" + language,
       design: "row",
     };
   });
@@ -61,38 +50,32 @@ ENUM_LANGUAGES.forEach((button) => {
     button.design
   ]();
 });
+
 // Send a keyboard along with a message.
-bot.command("start", async (ctx) => {
+bot.command(COMMANDS.START, async (ctx: MyContext) => {
   await ctx.reply("Please choose your language", {
     reply_markup: inlineKeyboard,
   });
 });
 
-bot.on("callback_query:data", async (ctx) => {
-  await ctx.i18n.setLocale(ctx.callbackQuery.data);
-  console.log(
-    ctx.t("language.language-set-success", {
-      language:
-        FULL_LANGUAGE_NAMES[
-          ctx.callbackQuery.data as keyof typeof FULL_LANGUAGE_NAMES
-        ],
-    }),
-    ctx.callbackQuery.data
-  );
-  await ctx.reply(ctx.t("language.language-set"));
-  await ctx.answerCallbackQuery({
-    text: ctx.t("language.language-set-success", {
-      language:
-        FULL_LANGUAGE_NAMES[
-          ctx.callbackQuery.data as keyof typeof FULL_LANGUAGE_NAMES
-        ],
-    }),
-  }); // remove loading animation
+bot.on("callback_query:data", async (ctx: MyContext) => {
+  const command = ctx.callbackQuery.data.split(":")[0];
+  if (command === COMMANDS.SET_LANGUAGE) {
+    const locale = ctx.callbackQuery.data.split(":")[1];
+    await ctx.i18n.setLocale(locale);
+    await ctx.reply(
+      ctx.t("language.language-set-success", {
+        language:
+          FULL_LANGUAGE_NAMES[locale as keyof typeof FULL_LANGUAGE_NAMES],
+      })
+    );
+  }
+  await ctx.answerCallbackQuery();
 });
-// Now that you specified how to handle messages, you can start your bot.
-// This will connect to the Telegram servers and wait for messages.
+
 bot.catch((err) => {
   console.log("Error", err);
 });
+
 // Start the bot.
 bot.start();

@@ -1,4 +1,4 @@
-export const upperCasedStringToFirstLetterUppercased = (string) => {
+export const upperCasedStringToFirstLetterUppercased = (string: string) => {
   let newString = "";
   for (let i = 0; i < string.length; i++) {
     if (i === 0) {

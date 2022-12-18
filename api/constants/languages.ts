@@ -55,8 +55,8 @@ export const FULL_LANGUAGE_NAMES = {
   [LANGUAGES.ARABIC]: "العربية",
   [LANGUAGES.TURKISH]: "Türkçe",
   [LANGUAGES.POLISH]: "Polski",
-  [LANGUAGES.KYRGYZ]: "Кыргызча",
-  [LANGUAGES.UZBEK]: "O'zbekcha",
+  [LANGUAGES.KYRGYZ]: "Кыргыз",
+  [LANGUAGES.UZBEK]: "O'zbek",
   [LANGUAGES.TAJIK]: "Тоҷикӣ",
   [LANGUAGES.KAZAKH]: "Қазақша",
 };
@@ -64,7 +64,6 @@ export const FULL_LANGUAGE_NAMES = {
 export const ALLOWED_LANGUAGES = [
   LANGUAGES.ENGLISH,
   LANGUAGES.KYRGYZ,
-  LANGUAGES.UZBEK,
   LANGUAGES.RUSSIAN,
 ];
 
