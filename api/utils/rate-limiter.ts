@@ -5,7 +5,7 @@ export const rateLimiter = (bot: Bot) => {
   bot.use(
     limit({
       // Allow only 3 messages to be handled every 2 seconds.
-      timeFrame: 1000,
+      timeFrame: 2000,
       limit: 3,
 
       // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.

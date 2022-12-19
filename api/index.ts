@@ -1,3 +1,4 @@
+import * as dotenv from "dotenv";
 import { Bot, InlineKeyboard, session, webhookCallback } from "grammy";
 import { I18n } from "@grammyjs/i18n";
 import { MyContext } from "./types";
@@ -11,6 +12,7 @@ import { loadLocalizations } from "./utils/localization";
 import { supabaseStorage } from "./utils/storage";
 import { rateLimiter } from "./utils/rate-limiter";
 import { COMMANDS } from "./constants/commands";
+dotenv.config();
 
 const BOT_TOKEN: string = process.env["BOT_TOKEN"] ?? "";
 
